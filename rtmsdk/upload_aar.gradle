@@ -1,0 +1,27 @@
+apply plugin: 'maven'
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            println '> start'
+            repository(url: releaseRepositoryUrl) {
+                println releaseRepositoryUrl
+                File propFile = new File(rootDir,'local.properties')
+
+                def props = new Properties()
+                props.load(new FileInputStream(propFile))
+                if (props != null && props.containsKey('repositoryUserName') && props.containsKey('repositoryPassword')) {
+                    def repositoryUserName = props['repositoryUserName']
+                    def repositoryPassword = props['repositoryPassword']
+                    authentication(userName: repositoryUserName, password: repositoryPassword)
+                    println '> start upload aar'
+                } else {
+                    println '> Please Set local.properties file'
+                    return
+                }
+            }
+        }
+    }
+
+}
+

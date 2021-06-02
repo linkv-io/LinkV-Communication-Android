@@ -1,0 +1,90 @@
+<resources>
+    <string name="app_name">LinkVRTMDemo</string>
+    <string name="input_room_id_empty">输入的房间号不能为空！</string>
+    <string name="please_authorize_permission">请授权相关权限！</string>
+    <string name="live_room_have_user">直播间已有人开播，请换一个直播间！</string>
+    <string name="please_input_pk_room_id">请输入pk房间id</string>
+    <string name="btn_ok">确定</string>
+    <string name="btn_cancel">取消</string>
+
+
+    <string name="start_streaming">我要开播</string>
+    <string name="look_streaming">观看直播</string>
+    <string name="network_error">网络异常，请检查设备连接情况</string>
+    <string name="start_living">开始直播</string>
+    <string name="user_id">用户ID:</string>
+    <string name="send_sei">发送SEI数据</string>
+    <string name="receive_sei">收到SEI数据:</string>
+    <string name="resolution_adaptation">分辨率自适应</string>
+    <string name="video_parameter">视频参数设置</string>
+    <string name="video_angle">输出视频角度</string>
+    <string name="accompaniment_demo">伴奏演示</string>
+    <string name="external_audio_input">外置音频输入</string>
+    <string name="join_room_setting">请在加入房间前设置</string>
+    <string name="degree0">0 度</string>
+    <string name="degree90">90 度</string>
+    <string name="degree180">180 度</string>
+    <string name="degree270">270 度</string>
+    <string name="app_name2">App 名称</string>
+    <string name="setting_version">版本</string>
+    <string name="setting_environment">环境</string>
+    <string name="setting_app_environment">App 环境</string>
+    <string name="setting_about">关于</string>
+    <string name="setting_other">其他</string>
+    <string name="setting_texture">Texture</string>
+
+    <string name="setting_prudtion">正式环境</string>
+    <string name="setting_test">测试环境</string>
+
+    <string name="app_type">App 类型</string>
+    <string name="app_type_china">中国</string>
+    <string name="app_type_international">国际</string>
+
+    <string name="copy_to_clipboard">已拷贝至剪贴板</string>
+
+    <string name="volume_control_play">播放</string>
+    <string name="volume_control_pause">暂停</string>
+    <string name="setting">设置</string>
+    <string name="volume">音量: </string>
+    <string name="resolution">分辨率</string>
+    <string name="fps">帧率</string>
+    <string name="bitrate">码率</string>
+    <string name="ok">确定</string>
+    <string name="error_code">错误码: </string>
+    <string name="try_later">请稍后再试</string>
+    <string name="login_success">登录成功</string>
+    <string name="login_failed">登录失败</string>
+    <string name="member_limited">通话人数已达上限</string>
+    <string name="me">我</string>
+    <string name="host">主播</string>
+    <string name="uid">用户ID</string>
+    <string name="video_lost">视频丢包</string>
+    <string name="audio_lost">音频丢包</string>
+    <string name="video_bitrate">视频码率</string>
+    <string name="audio_bitrate">音频码率</string>
+    <string name="quality">统计视图</string>
+    <string name="beauty">美颜级别</string>
+    <string name="bright">亮度级别</string>
+    <string name="tone">色调级别</string>
+    <string name="texture_adjust">sdk自适应</string>
+    <string name="texture_on">打开texture</string>
+    <string name="texture_off">关闭texture</string>
+    <string name="please_input_room_id">请输入房间号</string>
+
+    <string name="title_chat_private">私信聊天</string>
+    <string name="title_chat_room">房间: %1$s</string>
+    <string name="tip_input_msg_or_target_id">消息内容和对方用户ID不能为空</string>
+    <string name="tip_input_user_id">请输入不小于四位数的用户ID</string>
+    <string name="pls_input_user_id">请输入对方的用户ID</string>
+    <string name="tip_input_room_id">请输入房间号</string>
+    <string name="pls_input_msg">请输入消息内容</string>
+    <string name="send">发送</string>
+    <string name="room_msg">房间消息</string>
+    <string name="private_msg">私信消息</string>
+    <string name="login">登录</string>
+    <string name="login_succeed_uid">登陆成功 用户ID:  %1$s</string>
+    <string name="confirm">确认</string>
+    <string name="pls_login_first">请先登录!</string>
+    <string name="pls_wait_authed">请等待鉴权通过再进入房间</string>
+
+</resources>
