@@ -22,6 +22,7 @@ public class RtmEngineManager {
 
 
     public static LVRTMEngine createEngine(Application application) {
+        // 用官网申请的appid和appkey代替Constans.APP_ID和Constans.APP_SECRET。
         mEngine = LVRTMEngine.createEngine(application, Constans.APP_ID, Constans.APP_SECRET, new LinkVRTCEngine.IInitHandler() {
             @Override
             public void onInitResult(int resultCode) {

@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
     private void initRTMEngine() {
         mEngine = RtmEngineManager.createEngine(getApplication());
         mEngine.setIMAuthEventListener(imAuthEventListener);
-        mEngine.setGlobalReceiveMessageListener(receiveMessageListener);
+        mEngine.setGlobalReceiveMessageListener(IMBridger.IMReceiveMessageListener receiveMessageListener);
 
     }
 
