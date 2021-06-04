@@ -6,8 +6,10 @@
 
 ## 1、前提条件
 
+首先需要在 [开发者平台](https://dev.linkv.sg/) 注册账号，创建应用，然后获取 **SDK** 鉴权需要的 `appID` 和 `appSecret` ，在实现直播之前，请确认您已完成以下操作：
+
 *  Android 5.1或以上版本的设备
-* 有效的`AppID`和`AppSign`
+* [创建应用、获取 appID 和 appSecret](https://doc-zh.linkv.sg/platform/info/quick_start)
 
 ## 2、集成SDK
 
