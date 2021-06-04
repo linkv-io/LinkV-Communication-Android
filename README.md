@@ -1,6 +1,6 @@
-# LinkV RTM SDK集成文档
+# LinkV Communication SDK集成文档
 
-本文介绍如何使用LinkV RTM SDK视频视频通话和即时通讯消息的功能。此SDK主要是对[LinkV音视频SDK](https://doc-zh.linkv.sg/android/rtc/overview)和[IM SDK](https://doc-zh.linkv.sg/android/im/overview)的一层封装，使其接口更加简单易用。您可以根据您的需求任意修改里面的代码实现。当然您也可以在项目中直接引用[LinkV音视频SDK](https://doc-zh.linkv.sg/android/rtc/overview)和[IM SDK](https://doc-zh.linkv.sg/android/im/overview)相关的类来实现更加复杂的功能。
+本文介绍如何使用LinkV Communication SDK视频视频通话和即时通讯消息的功能。此SDK主要是对[LinkV音视频SDK](https://doc-zh.linkv.sg/android/rtc/overview)和[IM SDK](https://doc-zh.linkv.sg/android/im/overview)的一层封装，使其接口更加简单易用。您可以根据您的需求任意修改里面的代码实现。当然您也可以在项目中直接引用[LinkV音视频SDK](https://doc-zh.linkv.sg/android/rtc/overview)和[IM SDK](https://doc-zh.linkv.sg/android/im/overview)相关的类来实现更加复杂的功能。
 
 * 商务合作与技术交流请加QQ群：**1160896626**
 
@@ -30,7 +30,7 @@
 
 * 在项目中的android/app/build.gradle文件添加社交SDK依赖，请尽量使用api方式引入依赖，方便使用进阶功能接口：
 ```xml
-    api 'com.linkv.live:rtmsdk:1.0.6'
+    api 'com.linkv.live:lvcsdk:1.0.7'
 ```
 
   
@@ -75,8 +75,8 @@
 ### 4.1 初始化SDK 
 
 ```java
-// 获取LVCEngine实例,传入appid和appkey
-LVCEngine mEngine = LVCEngine.createEngine(Application application, String appID, String appKey, LVCEngine.IInitHandler iInitHandler);
+// 获取LVCEngine实例,传入appId和appSecret
+LVCEngine mEngine = LVCEngine.createEngine(Application application, String appId, String appSecret, LVCEngine.IInitHandler iInitHandler);
 ```
 ### 4.2 设置IM事件监听,实现IM回调方法 
 ```java
@@ -190,7 +190,7 @@ void onPlayStateUpdate(int state, String userId);
 
 // 当收到登录房间成功的回调之后才可以进行推流、发送房间消息等操作
 mEngine.startPublishing();
-RtmFlutterPlugin.sendRoomMessage(String targetId, String msgContent, IMBridger.IMSendMessageListener listener)；
+mEngine.sendRoomMessage(String targetId, String msgContent, IMBridger.IMSendMessageListener listener)；
 
 ```
 
