@@ -1,2 +1,2 @@
-rootProject.name='LinkV-RTM-Android'
+rootProject.name='LinkV-Communication-Android'
 include ':app', ':rtmsdk'

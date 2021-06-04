@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">LinkV-RTM-Android</string>
+    <string name="app_name">LinkV Communication</string>
     <string name="input_room_id_empty">输入的房间号不能为空！</string>
     <string name="please_authorize_permission">请授权相关权限！</string>
     <string name="live_room_have_user">直播间已有人开播，请换一个直播间！</string>
