@@ -1,8 +1,14 @@
 # LinkV Communication SDK集成文档
 
+* 商务合作与技术交流请加QQ群：**1160896626**
+
 本文介绍如何使用LinkV Communication SDK视频视频通话和即时通讯消息的功能。此SDK主要是对[LinkV音视频SDK](https://doc-zh.linkv.sg/android/rtc/overview)和[IM SDK](https://doc-zh.linkv.sg/android/im/overview)的一层封装，使其接口更加简单易用。您可以根据您的需求任意修改里面的代码实现。当然您也可以在项目中直接引用[LinkV音视频SDK](https://doc-zh.linkv.sg/android/rtc/overview)和[IM SDK](https://doc-zh.linkv.sg/android/im/overview)相关的类来实现更加复杂的功能。
 
-* 商务合作与技术交流请加QQ群：**1160896626**
+比如您可以使用本SDK实现类似下图的陌人生一对一视频聊天应用，示例代码下载：[StrangerChatAndroid](https://github.com/linkv-io/StrangerChatAndroid)
+
+![img](https://doc-zh.linkv.sg/zh/ios/1v1/demo2.png)
+
+
 
 ## 1、前提条件
 
