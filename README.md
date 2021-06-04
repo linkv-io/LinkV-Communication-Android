@@ -1,6 +1,7 @@
 # LinkV RTM SDK集成文档
 
-本文介绍如何使用LinkV RTM SDK视频视频通话和即时通讯消息的功能。LinkV RTM SDK是集成了LVIMSDK和LinkV RTC SDK的功能。
+本文介绍如何使用LinkV RTM SDK视频视频通话和即时通讯消息的功能。此SDK主要是对[LinkV音视频SDK](https://doc-zh.linkv.sg/android/rtc/overview)和[IM SDK](https://doc-zh.linkv.sg/android/im/overview)的一层封装，使其接口更加简单易用。您可以根据您的需求任意修改里面的代码实现。当然您也可以在项目中直接引用[LinkV音视频SDK](https://doc-zh.linkv.sg/android/rtc/overview)和[IM SDK](https://doc-zh.linkv.sg/android/im/overview)相关的类来实现更加复杂的功能。
+
 * 商务合作与技术交流请加QQ群：**1160896626**
 
 ## 1、前提条件
