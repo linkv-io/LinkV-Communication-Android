@@ -8,7 +8,6 @@ import com.im.imlogic.IMMsg;
 import com.im.imlogic.LVIMSDK;
 import com.im.imlogic.LVPushContent;
 import com.linkv.rtc.entity.LVAudioVolume;
-import com.linkv.rtc.render.LVDisplayView;
 import com.linkv.rtc.LVConstants;
 import com.linkv.rtcsdk.LinkVRTCEngine;
 import com.linkv.rtcsdk.bean.VideoQuality;
@@ -22,8 +21,8 @@ import java.util.ArrayList;
  * Created by Xiaohong on 2020/7/18.
  * desc:
  */
-public class LVRTMEngine {
-    private static String TAG = "LVRTMEngine";
+public class LVCEngine {
+    private static String TAG = "LVCEngine";
 
     private final Application mApplication;
 
@@ -41,8 +40,8 @@ public class LVRTMEngine {
      * @param iInitHandler       结果回调
      * @return 音视频引擎
      */
-    public static LVRTMEngine createEngine(Application application, String appID, String appKey, LinkVRTCEngine.IInitHandler iInitHandler) {
-        return new LVRTMEngine(application, appID, appKey, iInitHandler);
+    public static LVCEngine createEngine(Application application, String appID, String appKey, LinkVRTCEngine.IInitHandler iInitHandler) {
+        return new LVCEngine(application, appID, appKey, iInitHandler);
     }
 
     // 房间事件监听器设置。
@@ -51,7 +50,7 @@ public class LVRTMEngine {
         mRTCEngine.setEventHandler(eventHandler);
     }
 
-    public LVRTMEngine(Application application, String appID, String appKey, LinkVRTCEngine.IInitHandler iInitHandler) {
+    public LVCEngine(Application application, String appID, String appKey, LinkVRTCEngine.IInitHandler iInitHandler) {
         mApplication = application;
         mRTCEngine = LinkVRTCEngine.createEngine(application, appID, appKey, false, true, iInitHandler);
         mIMSDK = LVIMSDK.sharedInstance();

@@ -75,8 +75,8 @@
 ### 4.1 初始化SDK 
 
 ```java
-// 获取LVRTMEngine实例,传入appid和appkey
-LVRTMEngine mEngine = LVRTMEngine.createEngine(Application application, String appID, String appKey, LinkVRTCEngine.IInitHandler iInitHandler);
+// 获取LVCEngine实例,传入appid和appkey
+LVCEngine mEngine = LVCEngine.createEngine(Application application, String appID, String appKey, LVCEngine.IInitHandler iInitHandler);
 ```
 ### 4.2 设置IM事件监听,实现IM回调方法 
 ```java
@@ -140,7 +140,7 @@ mEngine.loginUser(String userId);
 ```
 
 
-## 5、使用LVRTMEngine实现直播间功能
+## 5、使用LVCEngine实现直播间功能
 ### 5.1 登录房间
 ```java 
 mEngine.loginRoom(String uid, String roomId, boolean isHost);
@@ -150,7 +150,7 @@ mEngine.loginRoom(String uid, String roomId, boolean isHost);
 ### 5.2 设置房间事件监听
 
 ```java
-mEngine.setRoomEventHandler(LVRTMEngine.IRoomEventHandler eventHandler);
+mEngine.setRoomEventHandler(LVCEngine.IRoomEventHandler eventHandler);
 
 部分房间回调如下：
 // 远端流停止

@@ -19,11 +19,11 @@ import com.im.imlogic.IMMsg;
 import com.im.imlogic.LVPushContent;
 import com.linkv.linkvrtmdemo.utils.LogUtils;
 import com.linkv.linkvrtmdemo.utils.SystemUtil;
-import com.linkv.lvrtmsdk.LVRTMEngine;
+import com.linkv.lvrtmsdk.LVCEngine;
 
 import java.util.Arrays;
 
-import static com.linkv.lvrtmsdk.LVRTMEngine.MessageSubType.IM_SUBTYPE_TEXT;
+import static com.linkv.lvrtmsdk.LVCEngine.MessageSubType.IM_SUBTYPE_TEXT;
 
 /**
  * Created by Xiaohong on 2020-05-22.
@@ -37,7 +37,7 @@ public class PrivateChatActivity extends AppCompatActivity {
     private MsgAdapter mMsgAdapter;
 
     private static final String TAG = "PrivateChatActivity";
-    private LVRTMEngine mRtmEngine;
+    private LVCEngine mRtmEngine;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

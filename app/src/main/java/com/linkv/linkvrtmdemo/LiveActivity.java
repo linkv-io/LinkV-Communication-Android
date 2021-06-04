@@ -27,7 +27,7 @@ import com.linkv.linkvrtmdemo.utils.LogUtils;
 import com.linkv.linkvrtmdemo.utils.SystemUtil;
 import com.linkv.linkvrtmdemo.view.DisplayContainer;
 import com.linkv.linkvrtmdemo.view.NineItemLayout;
-import com.linkv.lvrtmsdk.LVRTMEngine;
+import com.linkv.lvrtmsdk.LVCEngine;
 import com.linkv.rtc.LVConstants;
 import com.linkv.rtc.entity.LVAudioVolume;
 import com.linkv.rtcsdk.bean.VideoQuality;
@@ -56,7 +56,7 @@ public class LiveActivity extends FragmentActivity implements SeekBar.OnSeekBarC
     private boolean mFrontCamera = true;
     private boolean mEnableAudio = true;
 
-    private LVRTMEngine mEngine;
+    private LVCEngine mEngine;
 
 
     private EditText mEtRoomMsg;
@@ -80,7 +80,7 @@ public class LiveActivity extends FragmentActivity implements SeekBar.OnSeekBarC
         loginRoom();
     }
 
-    LVRTMEngine.IRoomEventHandler eventHandler = new LVRTMEngine.IRoomEventHandler() {
+    LVCEngine.IRoomEventHandler eventHandler = new LVCEngine.IRoomEventHandler() {
 
         @Override
         public void onRemoteStreamEnd(String userId) {
