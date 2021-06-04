@@ -20,4 +20,4 @@
 /gradlew.bat
 /gradlew
 /.idea/
-/lvcsdk/src/main/java/com/linkv/lvcsdk/Constans.java
+/app/src/main/java/com/linkv/lvcdemo/Constans.java
