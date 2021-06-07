@@ -75,7 +75,6 @@ public class LiveActivity extends FragmentActivity implements SeekBar.OnSeekBarC
         getIntentData();
         initView();
         mMapDisplayLayout = new HashMap<>();
-        mEngine.setRoomEventHandler(eventHandler);
 
         loginRoom();
     }
@@ -201,7 +200,7 @@ public class LiveActivity extends FragmentActivity implements SeekBar.OnSeekBarC
 
     private void loginRoom() {
         // 登录房间
-        mEngine.loginRoom(GlobalParams.userId, mRoomId, mHost);
+        mEngine.loginRoom(GlobalParams.userId, mRoomId, mHost, eventHandler);
     }
 
     private void addRemoteView(String userId) {

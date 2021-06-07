@@ -36,7 +36,7 @@
 
 * 在项目中的android/app/build.gradle文件添加社交SDK依赖，请尽量使用api方式引入依赖，方便使用进阶功能接口：
 ```xml
-    api 'com.linkv.live:lvcsdk:1.0.7'
+    api 'com.linkv.live:lvcsdk:1.0.8'
 ```
 
   
@@ -82,27 +82,16 @@
 
 ```java
 // 获取LVCEngine实例,传入appId和appSecret
-LVCEngine mEngine = LVCEngine.createEngine(Application application, String appId, String appSecret, LVCEngine.IInitHandler iInitHandler);
+LVCEngine mEngine = LVCEngine.createEngine(Application application, "your appId", "your appSecret", resultCode -> {
+    if (resultCode == 0) {
+        // 初始化成功。
+    } else {
+        // 初始化失败。
+    }
+});
 ```
-### 4.2 设置IM事件监听,实现IM回调方法 
+### 4.2 设置接收IM全局消息的监听
 ```java
-mEngine.setIMAuthEventListener(IMBridger.IMModuleEventListener listener);
-
-// 实现以下IM回调
-
-// 查询token事件,你需要通过server to server方式获取IM的token后调用setIMToken方法将token设置给SDK
-// SDK会向IM服务器进行校验，如果认证成功则调用onIMAuthSucceed方法，失败则调用onIMAuthFailed
-// 使用过程中如果发现token过期调用onIMTokenExpired
-void onQueryIMToken();
-// 认证失败
-void onIMAuthFailed(int ecode, int rcode, String uid, boolean isTokenExpired);
-// 认证成功
-void onIMAuthSucceed(String uid, String token, long unReadMsgSize);
-// 认证过期
-void onIMTokenExpired(String uid, String token);
-/// 收到IM消息
-void onIMMessageReceive(LVIMMsg msg) {}
-
 // 接收全局消息的监听
 mEngine.setGlobalReceiveMessageListener(IMBridger.IMReceiveMessageListener receiveMessageListener);
 
@@ -122,10 +111,23 @@ int onIMReceiveMessageHandler(String owner, IMMsg msg, int waitings, int packetS
 
 ```
 
-### 4.3 登录SDK 
+### 4.3 登录SDK，并设置IM回调监听。
 ```java
 // 返回值为0代表登录成功，其它代表失败
-mEngine.loginUser(String userId);
+mEngine.loginUser(String userId, IMBridger.IMModuleEventListener listener);
+
+// IM监听器IMBridger.IMModuleEventListener的回调方法有如下四个：
+
+// 查询token事件,你需要通过server to server方式获取IM的token后调用setIMToken方法将token设置给SDK
+// SDK会向IM服务器进行校验，如果认证成功则调用onIMAuthSucceed方法，失败则调用onIMAuthFailed
+// 使用过程中如果发现token过期调用onIMTokenExpired
+void onQueryIMToken();
+// 认证失败
+void onIMAuthFailed(int ecode, int rcode, String uid, boolean isTokenExpired);
+// 认证成功
+void onIMAuthSucceed(String uid, String token, long unReadMsgSize);
+// 认证过期
+void onIMTokenExpired(String uid, String token);
 ```
 
 ### 4.4 发送私信 
@@ -142,23 +144,27 @@ mEngine.loginUser(String userId);
      * @param pushContent  推送的内容(包括推送通知标题，推送通知内容和推送负载数据,离线消息会以推送通知的形式发送)
      * @param listener 发送结果监听
      */
-    public void sendPrivateMessage(MessageSubType sub, String tid, String type, String content,LVPushContent pushContent, IMBridger.IMSendMessageListener listener) {
+    public void sendPrivateMessage(MessageSubType sub, String tid, String type, String content, 
+                                   LVPushContent pushContent, (ecode, tid, msg, context) -> {
+      if (ecode == 0) {
+        // 发送成功
+      }else{
+        // 发送失败
+      });
 ```
 
 
 ## 5、使用LVCEngine实现直播间功能
 ### 5.1 登录房间
 ```java 
-mEngine.loginRoom(String uid, String roomId, boolean isHost);
+mEngine.loginRoom(String uid, String roomId, boolean isHost, LVCEngine.IRoomEventHandler eventHandler);
 ```
 
 
-### 5.2 设置房间事件监听
+### 5.2 实现房间回调监听器LVCEngine.IRoomEventHandler的方法
 
 ```java
-mEngine.setRoomEventHandler(LVCEngine.IRoomEventHandler eventHandler);
-
-部分房间回调如下：
+部分房间回调方法如下：
 // 远端流停止
 void onRemoteStreamEnd(String userId);
 
@@ -196,7 +202,7 @@ void onPlayStateUpdate(int state, String userId);
 
 // 当收到登录房间成功的回调之后才可以进行推流、发送房间消息等操作
 mEngine.startPublishing();
-mEngine.sendRoomMessage(String targetId, String msgContent, IMBridger.IMSendMessageListener listener)；
+
 
 ```
 
@@ -229,7 +235,26 @@ public void onRemoteStreamEnd(String userId) {
 }
 ```
 
-### 5.6 退出房间
+### 5.6 发送房间消息
+
+```java
+		/**
+     * 发送房间消息
+     *
+     * @param targetId   房间Id
+     * @param msgContent 消息内容
+     * @param listener   发送结果监听
+     */
+mEngine.sendRoomMessage(String targetId, String msgContent, (ecode, tid, msg, context) -> {
+      if (ecode == 0) {
+        // 发送成功
+      }else{
+        // 发送失败
+      });
+```
+
+### 5.7 退出房间
+
 ```java
 mEngine.logoutRoom();
 ```

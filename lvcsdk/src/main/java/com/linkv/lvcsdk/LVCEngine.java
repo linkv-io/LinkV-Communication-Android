@@ -45,7 +45,6 @@ public class LVCEngine {
     // 房间事件监听器设置。
     public void setRoomEventHandler(IRoomEventHandler roomEventHandler) {
         mRoomEventHandler = roomEventHandler;
-        mRTCEngine.setEventHandler(eventHandler);
     }
 
     public LVCEngine(Application application, String appId, String appSecret, LinkVRTCEngine.IInitHandler iInitHandler) {
@@ -77,7 +76,8 @@ public class LVCEngine {
 
 
     // 登录
-    public int loginUser(String uid) {
+    public int loginUser(String uid, IMBridger.IMModuleEventListener listener) {
+        mIMSDK.setEventListener(listener);
         return mIMSDK.login(uid, "");
     }
 
@@ -163,22 +163,12 @@ public class LVCEngine {
     }
 
     // 进入房间
-    public void loginRoom(String uid, String roomId, boolean isHost) {
+    public void loginRoom(String uid, String roomId, boolean isHost, IRoomEventHandler roomEventHandler) {
+        mRoomEventHandler = roomEventHandler;
+        // 直播间事件监听
+        mRTCEngine.setEventHandler(eventHandler);
         // 房间消息监听
-        mIMSDK.setChatroomReceiveMessageListener(new IMBridger.IMReceiveMessageListener() {
-            @Override
-            public boolean onIMReceiveMessageFilter(int cmdtype, int subtype, int diytype, int dataid, String fromid, String toid, String msgType, byte[] msgContent, int waitings, int packetSize, int waitLength, int bufferSize) {
-                return false;
-            }
-
-            @Override
-            public int onIMReceiveMessageHandler(String owner, final IMMsg msg, int waitings, int packetSize, int waitLength, int bufferSize) {
-                if (msg != null && mRoomEventHandler != null) {
-                    mRoomEventHandler.onRoomMessageReceive(msg);
-                }
-                return 0;
-            }
-        });
+        mIMSDK.setChatroomReceiveMessageListener(imReceiveMessageListener);
 
         mIMSDK.joinChatRoom(roomId, null, new IMBridger.IMSendMessageListener() {
             @Override
@@ -458,6 +448,22 @@ public class LVCEngine {
 
 
     }
+
+
+    private IMBridger.IMReceiveMessageListener imReceiveMessageListener = new IMBridger.IMReceiveMessageListener() {
+        @Override
+        public boolean onIMReceiveMessageFilter(int cmdtype, int subtype, int diytype, int dataid, String fromid, String toid, String msgType, byte[] msgContent, int waitings, int packetSize, int waitLength, int bufferSize) {
+            return false;
+        }
+
+        @Override
+        public int onIMReceiveMessageHandler(String owner, final IMMsg msg, int waitings, int packetSize, int waitLength, int bufferSize) {
+            if (msg != null && mRoomEventHandler != null) {
+                mRoomEventHandler.onRoomMessageReceive(msg);
+            }
+            return 0;
+        }
+    };
 
     private LinkVRTCEngine.IEventHandler eventHandler = new LinkVRTCEngine.IEventHandler() {
         @Override

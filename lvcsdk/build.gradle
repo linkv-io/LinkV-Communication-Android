@@ -11,7 +11,7 @@ android {
         versionName LINKV_SDK_VERSION_NAME
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles 'consumer-rules.pro'
+        consumerProguardFiles 'proguard-rules.pro'
     }
 
     buildTypes {
@@ -37,7 +37,6 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.aar', '*.jar'])
-//    implementation 'androidx.appcompat:appcompat:1.1.0'
     api 'com.app.live:libimcore:1.0.8.2'
     api 'com.linkv.live:rtcsdk:0.0.24'
 

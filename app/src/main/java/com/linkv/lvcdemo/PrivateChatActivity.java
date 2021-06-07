@@ -122,19 +122,16 @@ public class PrivateChatActivity extends AppCompatActivity {
         lvPushContent.setTitle(pushTitle);
         lvPushContent.setBody(pushContent);
 
-        mLVCEngine.sendPrivateMessage(IM_SUBTYPE_TEXT, targetId, "msgType", msgContent, lvPushContent, new IMBridger.IMSendMessageListener() {
-            @Override
-            public void onIMSendMessageCallback(int ecode, String tid, final IMMsg msg, Object context) {
-                LogUtils.d(TAG, "ecode = " + ecode + " tid = " + tid);
-                if (ecode == 0) {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            mMsgAdapter.addMsg(msg);
-                            mRecyclerView.smoothScrollToPosition(mMsgAdapter.getItemCount() - 1);
-                        }
-                    });
-                }
+        mLVCEngine.sendPrivateMessage(IM_SUBTYPE_TEXT, targetId, "msgType", msgContent, lvPushContent, (ecode, tid, msg, context) -> {
+            LogUtils.d(TAG, "ecode = " + ecode + " tid = " + tid);
+            if (ecode == 0) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mMsgAdapter.addMsg(msg);
+                        mRecyclerView.smoothScrollToPosition(mMsgAdapter.getItemCount() - 1);
+                    }
+                });
             }
         });
     }

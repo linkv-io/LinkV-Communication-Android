@@ -22,14 +22,13 @@ public class LVCEngineManager {
 
     public static LVCEngine createEngine(Application application) {
         // 用官网申请的appId和appSecret代替Constans.APP_ID和Constans.APP_SECRET。
-        mEngine = LVCEngine.createEngine(application, Constans.APP_ID, Constans.APP_SECRET, new LinkVRTCEngine.IInitHandler() {
-            @Override
-            public void onInitResult(int resultCode) {
-                if (resultCode == LinkVRTCEngine.IInitHandler.INIT_RESULT_SUCCEED) {
-                    LogUtils.d(TAG, "初始化成功--- ");
-                } else {
-                    LogUtils.e(TAG, "初始化失败 resultCode = " + resultCode);
-                }
+        mEngine = LVCEngine.createEngine(application, Constans.APP_ID, Constans.APP_SECRET, resultCode -> {
+            if (resultCode == 0) {
+                // 初始化成功。
+                LogUtils.d(TAG, "初始化成功--- ");
+            } else {
+                // 初始化失败。
+                LogUtils.e(TAG, "初始化失败 resultCode = " + resultCode);
             }
         });
         return mEngine;

@@ -89,7 +89,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void initLVCEngine() {
         mEngine = LVCEngineManager.createEngine(getApplication());
-        mEngine.setIMAuthEventListener(imAuthEventListener);
         mEngine.setGlobalReceiveMessageListener(receiveMessageListener);
 
     }
@@ -254,7 +253,7 @@ public class MainActivity extends AppCompatActivity {
                                 Toast.makeText(MainActivity.this, getString(R.string.tip_input_user_id), Toast.LENGTH_SHORT).show();
                                 showLoginDialog();
                             } else {
-                                mEngine.loginUser(userId);
+                                mEngine.loginUser(userId,imAuthEventListener);
                                 GlobalParams.userId = userId;
                                 SystemUtil.hideKeyboard(MainActivity.this, mEtUserId);
                             }
