@@ -182,6 +182,12 @@ void onRoomDisconnect(int errorCode, String roomID);
 // 房间连接成功
 void onRoomConnected(String roomID);
 
+// 收到第一帧视频
+void onReceivedFirstVideoFrame(String userId, String streamId);
+
+// 收到第一帧音频
+void onReceivedFirstAudioFrame(String userId, String streamId);
+
 // 远端流质量更新
 void onRemoteQualityUpdate(String streamID, VideoQuality quality);
 
@@ -199,10 +205,6 @@ void onPublishStateUpdate(int state);
 
 // 拉流状态更新
 void onPlayStateUpdate(int state, String userId);
-
-// 当收到登录房间成功的回调之后才可以进行推流、发送房间消息等操作
-mEngine.startPublishing();
-
 
 ```
 
@@ -235,16 +237,11 @@ public void onRemoteStreamEnd(String userId) {
 }
 ```
 
-### 5.6 发送房间消息
+### 5.6 收发房间消息
+
+发送房间消息，房间中的所有人都会收到消息回调
 
 ```java
-		/**
-     * 发送房间消息
-     *
-     * @param targetId   房间Id
-     * @param msgContent 消息内容
-     * @param listener   发送结果监听
-     */
 mEngine.sendRoomMessage(String targetId, String msgContent, (ecode, tid, msg, context) -> {
       if (ecode == 0) {
         // 发送成功
@@ -253,7 +250,45 @@ mEngine.sendRoomMessage(String targetId, String msgContent, (ecode, tid, msg, co
       });
 ```
 
-### 5.7 退出房间
+收到房间消息回调
+
+```java
+void onRoomMessageReceive(IMMsg msg){
+  // 处理收到的房间消息
+}
+```
+
+
+
+### 5.7 录制音视频
+
+您可以在收到第一帧视频或收到第一帧音频的回调中开始录制音频或视频
+
+```java
+onReceivedFirstVideoFrame(String userId, String streamId){
+		mEngine.startRecorder(userId, ”录制文件存储路径“, LinkVRTCEngine.RecordType.AUDIO_AND_VIDEO）;
+}
+```
+
+结束录制
+
+```java
+/**
+ * 结束录制视频
+ * @param userId 用户id
+ */
+public void stopRecorder(String userId){
+  if (mRTCEngine != null) {
+    mRTCEngine.stopRecorder(userId);
+  }
+}
+```
+
+
+
+
+
+### 5.8 退出房间
 
 ```java
 mEngine.logoutRoom();

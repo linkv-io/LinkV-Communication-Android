@@ -337,6 +337,30 @@ public class LVCEngine {
         }
     }
 
+    /**
+     * 开始录制视频
+     * @param userId 用户id
+     * @param path 录制视频保存路径
+     * @param type 录制类型
+     * @return -1代表失败
+     */
+    public int startRecorder(String userId, String path, LinkVRTCEngine.RecordType type){
+        if (mRTCEngine != null) {
+            return mRTCEngine.startRecorder(userId, path, type);
+        }
+        return -1;
+    }
+
+    /**
+     * 结束录制视频
+     * @param userId 用户id
+     */
+    public void stopRecorder(String userId){
+        if (mRTCEngine != null) {
+            mRTCEngine.stopRecorder(userId);
+        }
+    }
+
 
     // RTC SDK的version
     public String getSdkVersion() {
@@ -366,7 +390,7 @@ public class LVCEngine {
      * 逆时针旋转
      * @param rotation 必须是90的倍数
      */
-    public void setLocalVideoRotation(LVConstants.CMVideoRotation rotation){
+    public void setLocalVideoRotation(LinkVRTCEngine.VideoRotation rotation){
         mRTCEngine.setLocalVideoRotation(rotation);
     }
     /**
@@ -446,7 +470,11 @@ public class LVCEngine {
         // 收到远端视频数据回掉，如果为 SDK 设置了渲染视图，SDK 内部会自动将该视频帧渲染出来
         long onDrawFrame(ByteBuffer i420Buffer, final int width, final int height, int strideY, final String userId, final String ext);
 
+        // 收到第一帧视频
+        void onReceivedFirstVideoFrame(String userId, String streamId);
 
+        // 收到第一帧音频
+        void onReceivedFirstAudioFrame(String userId, String streamId);
     }
 
 
@@ -577,6 +605,20 @@ public class LVCEngine {
                 return mRoomEventHandler.onDrawFrame(i420Buffer,width,height,strideY,userId,ext);
             }
             return 0;
+        }
+
+        @Override
+        public void onReceivedFirstVideoFrame(String s, String s1) {
+            if (mRoomEventHandler != null) {
+                mRoomEventHandler.onReceivedFirstVideoFrame(s, s1);
+            }
+        }
+
+        @Override
+        public void onReceivedFirstAudioFrame(String s, String s1) {
+            if (mRoomEventHandler != null) {
+                mRoomEventHandler.onReceivedFirstAudioFrame(s, s1);
+            }
         }
     };
 

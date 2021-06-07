@@ -30,6 +30,7 @@ import com.linkv.lvcdemo.view.NineItemLayout;
 import com.linkv.lvcsdk.LVCEngine;
 import com.linkv.rtc.LVConstants;
 import com.linkv.rtc.entity.LVAudioVolume;
+import com.linkv.rtcsdk.LinkVRTCEngine;
 import com.linkv.rtcsdk.bean.VideoQuality;
 
 import java.nio.ByteBuffer;
@@ -167,6 +168,16 @@ public class LiveActivity extends FragmentActivity implements SeekBar.OnSeekBarC
         @Override
         public long onDrawFrame(ByteBuffer i420Buffer, int width, int height, int strideY, String userId, String ext) {
             return 0;
+        }
+
+        @Override
+        public void onReceivedFirstVideoFrame(String userId, String streamId) {
+
+        }
+
+        @Override
+        public void onReceivedFirstAudioFrame(String userId, String streamId) {
+
         }
     };
 
