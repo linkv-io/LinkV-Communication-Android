@@ -36,7 +36,7 @@
 
 * 在项目中的android/app/build.gradle文件添加社交SDK依赖，请尽量使用api方式引入依赖，方便使用进阶功能接口：
 ```xml
-    api 'com.linkv.live:lvcsdk:1.0.8'
+    api 'com.linkv.live:lvcsdk:1.0.9'
 ```
 
   
