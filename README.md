@@ -21,16 +21,15 @@
 
 * 在工程的build.gradle文件添加如下内容：
 
-  ```xml
-  maven {
-    url 'http://maven.linkv.fun/repository/liveme-android/'
-    credentials {
-            username = 'LivemesdkPublicUser'
-            password = 'public'
-    }
+```xml
+maven {
+  url 'http://maven.linkv.fun/repository/liveme-android/'
+  credentials {
+          username = 'LivemesdkPublicUser'
+          password = 'public'
   }
-  ```
-
+}
+```
 
 ![img](https://raw.githubusercontent.com/linkvxiaohong/StrangerChatAndroid/outer/images/image-maven-config.png)
 
@@ -262,12 +261,10 @@ void onRoomMessageReceive(IMMsg msg){
 
 ### 5.7 录制音视频
 
-您可以在收到第一帧视频或收到第一帧音频的回调中开始录制音频或视频
+开始录制音视频
 
 ```java
-onReceivedFirstVideoFrame(String userId, String streamId){
-		mEngine.startRecorder(userId, ”录制文件存储路径“, LinkVRTCEngine.RecordType.AUDIO_AND_VIDEO）;
-}
+mEngine.startRecorder(userId, ”录制文件存储路径“, LinkVRTCEngine.RecordType.AUDIO_AND_VIDEO）;
 ```
 
 结束录制
@@ -283,8 +280,6 @@ public void stopRecorder(String userId){
   }
 }
 ```
-
-
 
 
 
