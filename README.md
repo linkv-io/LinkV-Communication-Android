@@ -1,6 +1,6 @@
 # LinkV Communication SDK集成文档
 
-* 商务合作与技术交流请联系，QQ群：**1160896626**，邮箱：**develop@linkv.sg**，微信: **[LinkV Business](./snapshot/LinkV-WeChat.jpeg)**
+* 商务合作与技术交流请联系，QQ群：**1160896626**，邮箱：**support@linkv.sg**，微信: **[LinkV Business](./snapshot/LinkV-WeChat.jpeg)**
 
 SDK视频讲解：                                                           
 [![视频讲解](snapshot/video_preview.png "视频讲解")](https://www.loom.com/share/427fef0f1b0046eba235cba80d3bc4a7)
